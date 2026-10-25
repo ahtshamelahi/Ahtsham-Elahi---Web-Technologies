@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 2 - Responsive Navbar and Grid</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <a href="#" class="logo">ShopEase</a>
+
+            <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                ☰
+            </button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+
+            <!-- Shopping Cart -->
+            <a href="#" class="cart" aria-label="Shopping cart">🛒</a>
+        </nav>
+    </header>
+
+
+    <!-- Product Grid -->
+    <main>
+        <h1 class="products">Our Products</h1>
+
+        <section class="product-grid">
+
+            <article class="product">
+                <img src="https://placehold.co/400x250?text=Laptop" alt="Laptop">
+                <h2>Laptop</h2>
+                <p>A laptop for everyday work.</p>
+                <p>Price: $500</p>
+            </article>
+
+            <article class="product">
+                <img src="https://placehold.co/400x250?text=Mobile" alt="Mobile Phone">
+                <h2>Mobile Phone</h2>
+                <p>A phone for daily use.</p>
+                <p>Price: $300</p>
+            </article>
+
+            <article class="product">
+                <img src="https://placehold.co/400x250?text=Tablet" alt="Tablet">
+                <h2>Tablet</h2>
+                <p>A tablet for study and entertainment.</p>
+                <p>Price: $250</p>
+            </article>
+
+            <article class="product">
+                <img src="https://placehold.co/400x250?text=Watch" alt="Smart Watch">
+                <h2>Smart Watch</h2>
+                <p>A smart watch for everyday use.</p>
+                <p>Price: $100</p>
+            </article>
+
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
