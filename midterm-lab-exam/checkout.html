@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ZeroLifeStyle</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Task 2: Pure CSS Checkout Form Styling */
+        :root {
+            --bp: 611px;
+            --accent-h: 77;
+            --accent-color: hsl(77, 70%, 45%);
+            --accent-hover: hsl(77, 70%, 38%);
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checkout-page {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .checkout-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .checkout-header h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .checkout-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-color);
+        }
+
+        /* Form Card */
+        .checkout-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e9ecef;
+            padding: 35px;
+        }
+
+        /* Fieldsets & Legends */
+        fieldset {
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            background: #fafbfc;
+        }
+
+        legend {
+            float: none;
+            width: auto;
+            padding: 0 12px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #111;
+            border-bottom: none;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+
+        .field-control {
+            width: 100%;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 11px 14px;
+            font-size: 14px;
+            border: 1.5px solid #ced4da;
+            border-radius: 8px;
+            background-color: #ffffff;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px hsla(77, 70%, 45%, 0.2);
+        }
+
+        /* Validation: Invalid only after interaction (not on page load) */
+        input:user-invalid,
+        select:user-invalid,
+        input:not(:placeholder-shown):invalid {
+            border-color: #e53935 !important;
+            box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.15) !important;
+        }
+
+        .field-error {
+            display: none;
+            color: #e53935;
+            font-size: 11px;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        input:user-invalid + .field-error,
+        select:user-invalid + .field-error,
+        input:not(:placeholder-shown):invalid + .field-error {
+            display: block;
+        }
+
+        .helper-text {
+            font-size: 11px;
+            color: #777;
+            margin-top: 3px;
+            display: block;
+        }
+
+        /* Full-width submit button at every screen size */
+        .submit-btn {
+            width: 100%;
+            background-color: var(--accent-color);
+            color: #000000;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.99);
+        }
+
+        /* Responsive Layout Rules based on BP = 611px */
+        /* Below BP (under 611px): 1 column, labels above inputs */
+        @media (max-width: 610.98px) {
+            .fieldsets-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .field-row {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                margin-bottom: 16px;
+            }
+
+            .checkout-card {
+                padding: 20px;
+            }
+        }
+
+        /* From BP (611px) and wider: side-by-side fieldsets, labels on left of inputs (CSS Grid) */
+        @media (min-width: 611px) {
+            .fieldsets-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+
+            .field-row {
+                display: grid;
+                grid-template-columns: 115px 1fr;
+                align-items: start;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .field-row label {
+                padding-top: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <a href="index.html"><img src="logo1.png" alt="zerolifestyle logo"></a>
+        </div>
+        <div class="header-icons">
+            <a href="index.html" class="cart-icon" aria-label="Back to store">
+                <i class="bi bi-house"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="checkout-page">
+        <a href="index.html" class="back-link"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
+
+        <div class="checkout-card">
+            <div class="checkout-header">
+                <h1>Secure Checkout</h1>
+                <p>Complete your contact and delivery details to place your order</p>
+            </div>
+
+            <!-- Task 2: Pure HTML5 Form with No JavaScript -->
+            <form action="index.html" method="get" class="checkout-form" novalidate="false">
+                <div class="fieldsets-grid">
+                    <!-- Fieldset 1: Contact -->
+                    <fieldset>
+                        <legend>Contact</legend>
+
+                        <!-- Full Name -->
+                        <div class="field-row">
+                            <label for="fullName">Full Name</label>
+                            <div class="field-control">
+                                <input type="text" id="fullName" name="fullName" required placeholder=" " />
+                                <span class="field-error">Please enter your full name.</span>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="field-row">
+                            <label for="email">Email Address</label>
+                            <div class="field-control">
+                                <input type="email" id="email" name="email" required placeholder=" " />
+                                <span class="field-error">Please enter a valid email address.</span>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="field-row">
+                            <label for="phone">Phone Number</label>
+                            <div class="field-control">
+                                <input type="tel" id="phone" name="phone" required pattern="03[0-9]{2}-[0-9]{7}" placeholder=" " />
+                                <span class="field-error">Phone must match 03XX-XXXXXXX format.</span>
+                                <span class="helper-text">Format: 0300-1234567</span>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Fieldset 2: Delivery -->
+                    <fieldset>
+                        <legend>Delivery</legend>
+
+                        <!-- Address -->
+                        <div class="field-row">
+                            <label for="address">Address</label>
+                            <div class="field-control">
+                                <input type="text" id="address" name="address" required placeholder=" " />
+                                <span class="field-error">Please enter your delivery address.</span>
+                            </div>
+                        </div>
+
+                        <!-- City -->
+                        <div class="field-row">
+                            <label for="city">City</label>
+                            <div class="field-control">
+                                <select id="city" name="city" required>
+                                    <option value="" disabled selected hidden>Select a city</option>
+                                    <option value="Lahore">Lahore</option>
+                                    <option value="Islamabad">Islamabad</option>
+                                    <option value="Karachi">Karachi</option>
+                                    <option value="Rawalpindi">Rawalpindi</option>
+                                    <option value="Faisalabad">Faisalabad</option>
+                                    <option value="Multan">Multan</option>
+                                    <option value="Peshawar">Peshawar</option>
+                                </select>
+                                <span class="field-error">Please select a city from the list.</span>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Date -->
+                        <div class="field-row">
+                            <label for="deliveryDate">Delivery Date</label>
+                            <div class="field-control">
+                                <input type="date" id="deliveryDate" name="deliveryDate" required min="2026-10-29" max="2026-11-09" placeholder=" " />
+                                <span class="field-error">Date must be between 2026-10-29 and 2026-11-09.</span>
+                                <span class="helper-text">Allowed: Oct 29, 2026 to Nov 9, 2026 (Max 11 days)</span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- Submit Button: Full-width at every size -->
+                <button type="submit" class="submit-btn">Place Order (Cash on Delivery)</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer" style="margin-top: auto; background: #000; color: #fff; padding: 20px 0; text-align: center; font-size: 13px;">
+        <div class="container">
+            <p style="margin: 0;">&copy; 2026 Zero Lifestyle. All Rights Reserved. Midterm Exam - Roll No: FA24-BCS-011</p>
+        </div>
+    </footer>
+</body>
+
+</html>
